@@ -9,8 +9,8 @@ class PhoneBook {
 public:
     // Your contact structure and other member functions
     int index;
-    static const int count = 4;
-    Contact contacts[4];
+    static const int count = 8;
+    Contact contacts[8];
 
     PhoneBook() : index(0) {}
 

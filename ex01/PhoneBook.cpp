@@ -3,8 +3,6 @@
 
 void PhoneBook::add_contact()
 {
-    if (index < this->count)
-    	index++;
     int edge = this->index;
     if (edge == this->count)
     	edge--;
