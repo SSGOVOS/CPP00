@@ -3,14 +3,16 @@
 #include "Contact.hpp"
 #include <cstdlib>
 #include <limits>
+#include <signal.h>
 
 class PhoneBook {
 public:
     // Your contact structure and other member functions
-    Contact contacts[8];
-    int current_contact_count;
+    int index;
+    static const int count = 4;
+    Contact contacts[4];
 
-    PhoneBook() : current_contact_count(0) {}
+    PhoneBook() : index(0) {}
 
     void add_contact();
     void search_contact();

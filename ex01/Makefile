@@ -1,6 +1,6 @@
 NAME = Phonebook
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 CC = clang++
 
