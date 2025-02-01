@@ -1,64 +1,75 @@
 #include "PhoneBook.hpp"
-#include <cstdlib>
+
+
+bool isAlphanumeric(const std::string& str) 
+{
+    for (size_t i = 0; i < str.length(); ++i) 
+    {
+        char ch = str[i];
+        if (!std::isalnum(ch)) 
+            return false;
+    }
+    return true;
+}
 
 void PhoneBook::add_contact()
 {
+    if (this->index < this->count)
+    	this->index++;
     int edge = this->index;
     if (edge == this->count)
     	edge--;
     for(int i = edge; i > 0 ; i--)
      	this->contacts[i] = this->contacts[i - 1];
-    // Add new contact
+
     std::cout << "Enter first name: ";
     while (1) 
     {
-        std::getline(std::cin, contacts[0].first_name);
-        if (!contacts[0].first_name.empty()) 
+    	if (!std::getline(std::cin, contacts[0].first_name))
+            return;
+        if (!contacts[0].first_name.empty() && isAlphanumeric(contacts[0].first_name)) 
         	break;
-        std::cout << "First name cannot be empty. Please enter a valid first name: ";
+        std::cout << "First name cannot be empty or !alphanumeric. Please enter a valid first name: ";
     }
     std::cout << "Enter last name: ";
     while (1) 
     {
-        std::getline(std::cin, contacts[0].last_name);
-        if (!contacts[0].last_name.empty()) 
+    	if (!std::getline(std::cin, contacts[0].last_name))
+           return;
+        if (!contacts[0].last_name.empty() && isAlphanumeric(contacts[0].last_name))
         	break;
-        std::cout << "Last name cannot be empty. Please enter a valid last name: ";
+        std::cout << "Last name cannot be empty or !alphanumeric. Please enter a valid last name: ";  
     }
     std::cout << "Enter nickname: ";
     while (1) 
     {
-        std::getline(std::cin, contacts[0].nickname);
-        if (!contacts[0].nickname.empty()) 
+    	if (!std::getline(std::cin, contacts[0].nickname))
+           return;
+        if (!contacts[0].nickname.empty() && isAlphanumeric(contacts[0].nickname)) 
         	break;
-        std::cout << "Nickname cannot be empty. Please enter a valid nickname: ";
+        std::cout << "Nickname cannot be empty or !alphanumeric. Please enter a valid nickname: ";
     }
 
     std::cout << "Enter phone number: ";
     while (1) 
     {
-        std::getline(std::cin, contacts[0].phone_number);
-        if (!contacts[0].phone_number.empty()) 
+    	if (!std::getline(std::cin, contacts[0].phone_number))
+          return;
+        if (!contacts[0].phone_number.empty() && isAlphanumeric(contacts[0].phone_number)) 
         	break;
-        std::cout << "Phone number cannot be empty. Please enter a valid phone number: ";
+        std::cout << "Phone number cannot be empty or !alphanumeric. Please enter a valid phone number: ";
     }
 
     std::cout << "Enter darkest secret: ";
     while (1) 
     {
-        std::getline(std::cin, contacts[0].darkest_secret);
-        if (!contacts[0].darkest_secret.empty()) 
+    	if (!std::getline(std::cin, contacts[0].darkest_secret))
+          return;
+        if (!contacts[0].darkest_secret.empty() && isAlphanumeric(contacts[0].darkest_secret)) 
         	break;
-        std::cout << "Darkest secret cannot be empty. Please enter a valid darkest secret: ";
+        std::cout << "Darkest secret cannot be empty or !alphanumeric. Please enter a valid darkest secret: ";
     }
     std::cout << "Contact added successfully!" << std::endl;
-}
-
-void signal_handler(int signum) {
-    if (signum == SIGINT) {
-        std::cout << "\nCtrl-C pressed, exiting safely...\n";
-        std::exit(0);
-    }
 }
 
 void PhoneBook::search_contact()
